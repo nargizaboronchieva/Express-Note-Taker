@@ -23,25 +23,30 @@ app.get("/api/notes", function(req, res){
 // Saves New Note
 app.post("/api/notes", function(req, res){
   //Retrieves the last id from the id.json file
-    let retrieveMasterID = JSON.parse(fs.readFileSync("db/id.json")) || 0;
+    // let retrieveMasterID = JSON.parse(fs.readFileSync("db/db.json")) || 0;
+//    console.log('retrieve')
+//     console.log(retrieveMasterID)
   //Retrieves the stored notes array from the db.json file
     let updatedNotesArray = JSON.parse(fs.readFileSync("db/db.json")) || [];
   //Gets the new note information from the request body on the /notes page
     let note = req.body;
+    const lastIndex = updatedNotesArray.length -1
   //Uses the retrieved master id to create a unique id for the new note
-    note.id = retrieveMasterID.masterID + 1;
+    note.id = updatedNotesArray[lastIndex].id + 1;
   //Updates the masterID object with the new note's ID
-    masterID = {"masterID": note.id};
+    // masterID = {"masterID": note.id};
   //Adds the new note to the saved notes array
     updatedNotesArray.push(note);
   //Saves the new notes array to the db.json file (overwrites old file)
     fs.writeFileSync("db/db.json", JSON.stringify(updatedNotesArray));
   //Saves the updated masterID to the id.json file (overwrites old file)
-    fs.writeFileSync("db/id.json", JSON.stringify(masterID));
+    // fs.writeFileSync("db/db.json", JSON.stringify(masterID));
   //console.log success
-    res.send(
-      console.log("Success! Your new note has been saved to the db.json file and the master id has been updated."));
+
+  res.json({success:true, data: updatedNotesArray, status:200})
+    // res.send("Success! Your new note has been saved to the db.json file and the master id has been updated.");
 });
+
 
 //Saves Edited Note
 app.post("/api/notes/:id", function(req, res){

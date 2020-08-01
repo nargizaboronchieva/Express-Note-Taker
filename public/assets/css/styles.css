@@ -8,6 +8,10 @@ html, body {
   display: none;
 }
 
+#edit-text {
+  max-height: 150px;
+}
+
 .icons i {
   margin-left: 15px;
   margin-right: 15px;
@@ -67,4 +71,14 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+}
+/* */
+@media only screen and (max-width: 600px) {
+  #note-span {
+    display:block;
+    margin-bottom: 5px;;
+  }
+  .note-title {
+    font-size: 2rem;
+  }
 }
