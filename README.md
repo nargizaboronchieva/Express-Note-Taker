@@ -15,7 +15,7 @@
 
 **Link to demo video:** https://drive.google.com/file/d/1tbuXpJMRkAG52RwdqIl0v0aIG6iaAs7B/view
 
-![Demo GIF](Note-Taker.gif)
+![Demo GIF](./Note-Taker.gif)
 
  ## Installation
  
